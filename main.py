@@ -1,6 +1,7 @@
 import json
 import hashlib
 import os
+import time
 
 def validate_transaction(transaction):
     """
@@ -23,7 +24,12 @@ def mine_block(transactions):
     Function to mine a block from a list of transactions.
     """
     # Construct the block header
-    block_header = "Difficulty Target: 0000ffff00000000000000000000000000000000000000000000000000000000"
+    block_header = "Version: 1\n"
+    block_header += "Previous Block Hash: 0000000000000000000000000000000000000000000000000000000000000000\n"
+    block_header += "Merkle Root: merkle_root_placeholder\n"
+    block_header += "Timestamp: " + str(int(time.time())) + "\n"
+    block_header += "Difficulty Target: 0000ffff00000000000000000000000000000000000000000000000000000000\n"
+    block_header += "Nonce: nonce_placeholder"
 
     # Serialize the coinbase transaction
     coinbase_transaction = {
